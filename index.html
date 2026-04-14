@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="GenTac is a diffusion-based generative framework for modeling, forecasting, and steering open-play soccer tactics.">
+    <meta property="og:title" content="GenTac: Generative Modeling and Forecasting of Soccer Tactics">
+    <meta property="og:description" content="A generative foundation for decoding multi-agent dynamics in sports AI.">
+    <meta property="og:image" content="figs/teaser.png">
+    <meta property="og:type" content="website">
+    <title>GenTac: Generative Modeling and Forecasting of Soccer Tactics</title>
+    <link rel="icon" href="figs/icon.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="hero" id="top" aria-label="GenTac project overview">
+      <div class="hero__shade"></div>
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="nav__brand" href="#top">GenTac</a>
+        <div class="nav__links">
+          <a href="#overview">Overview</a>
+          <a href="#tasks">Tasks</a>
+          <a href="#tacbench">TacBench</a>
+          <a href="#results">Results</a>
+          <a href="#vision">Vision</a>
+          <a href="#prevworks">Prev. Works</a>
+          <a href="#citation">Citation</a>
+        </div>
+      </nav>
+
+      <div class="hero__content">
+        <p class="eyebrow">Sports AI · Generative Tactics · Multi-Agent Forecasting</p>
+        <h1>GenTac: Generative Modeling and Forecasting of Soccer Tactics</h1>
+        <p class="hero__lead">
+          A diffusion-based framework that treats open-play soccer as a stochastic, multi-player process,
+          generating plausible future trajectories, tactical events, and controllable counterfactuals.
+        </p>
+
+        <p class="authors">
+          Jiayuan Rao<sup>1</sup>, Tianlin Gui<sup>1,2</sup>, Haoning Wu<sup>1</sup>,
+          Yanfeng Wang<sup>1</sup>, Weidi Xie<sup>1†</sup>
+        </p>
+        <p class="affiliations">
+          <sup>1</sup>Shanghai Jiao Tong University · <sup>2</sup>Nanjing University · <sup>†</sup>Corresponding author
+        </p>
+
+        <div class="actions" aria-label="Project links">
+          <a class="button button--primary" href="https://github.com/jyrao/GenTac" target="_blank" rel="noopener">
+            <span class="button__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 .8a11.2 11.2 0 0 0-3.5 21.8c.6.1.8-.2.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 .1.6 2.3 3.4 1.7.1-.8.4-1.3.7-1.6-2.6-.3-5.4-1.3-5.4-5.6 0-1.2.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.3-2.8 5.3-5.4 5.6.4.4.8 1.1.8 2.2V22c0 .4.2.7.8.6A11.2 11.2 0 0 0 12 .8Z"/></svg>
+            </span>
+            GitHub
+          </a>
+          <a class="button" href="https://arxiv.org/abs/2604.11786" target="_blank" rel="noopener">
+            <span class="button__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4.5 3.2h15v17.6h-15V3.2Zm2 2v13.6h11V5.2h-11Zm1.7 3h7.6v1.7H8.2V8.2Zm0 3.2h7.6v1.7H8.2v-1.7Zm0 3.2h5v1.7h-5v-1.7Z"/></svg>
+            </span>
+            arXiv
+          </a>
+          <a class="button" href="https://arxiv.org/pdf/2604.11786" target="_blank" rel="noopener">
+            <span class="button__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M6 2.8h8.7L20 8.1v13.1H6V2.8Zm8 1.9V9h4.1L14 4.7ZM8 4.8v14.4h10V11h-6V4.8H8Zm1.5 9.3h7v1.7h-7v-1.7Zm0 3h4.9v1.7H9.5v-1.7Z"/></svg>
+            </span>
+            PDF
+          </a>
+          <span class="button button--disabled" aria-disabled="true">
+            <span class="button__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M9 7.5v9l7-4.5-7-4.5ZM12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 1.9a8.1 8.1 0 1 1 0 16.2 8.1 8.1 0 0 1 0-16.2Z"/></svg>
+            </span>
+            Demo Video Soon
+          </span>
+          <div class="contact">
+            <button class="button button--contact" type="button" aria-expanded="false" aria-controls="contact-panel">
+              <span class="button__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 4.5h16v15H4v-15Zm2.1 2 5.9 5.1 5.9-5.1H6.1ZM6 17.5h12V8.8l-6 5.2-6-5.2v8.7Z"/></svg>
+              </span>
+              Contact Us
+            </button>
+            <div class="contact__panel" id="contact-panel" role="menu" aria-label="Contact links">
+              <a href="mailto:jy_rao@sjtu.edu.cn" role="menuitem">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4.5h16v15H4v-15Zm2.1 2 5.9 5.1 5.9-5.1H6.1ZM6 17.5h12V8.8l-6 5.2-6-5.2v8.7Z"/></svg>
+                <span>Email</span>
+                <strong>jy_rao@sjtu.edu.cn</strong>
+              </a>
+              <a href="https://github.com/jyrao" target="_blank" rel="noopener" role="menuitem">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .8a11.2 11.2 0 0 0-3.5 21.8c.6.1.8-.2.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 .1.6 2.3 3.4 1.7.1-.8.4-1.3.7-1.6-2.6-.3-5.4-1.3-5.4-5.6 0-1.2.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.3-2.8 5.3-5.4 5.6.4.4.8 1.1.8 2.2V22c0 .4.2.7.8.6A11.2 11.2 0 0 0 12 .8Z"/></svg>
+                <span>GitHub</span>
+                <strong>@jyrao</strong>
+              </a>
+              <a href="https://www.xiaohongshu.com/user/profile/5d345002000000001200cc4c" target="_blank" rel="noopener" role="menuitem">
+                <img class="xhs-logo" src="figs/xhs.png" alt="" aria-hidden="true">
+                <span>RedNote</span>
+                <strong>Jiayuan Rao</strong>
+              </a>
+              <a href="https://jyrao.github.io/" target="_blank" rel="noopener" role="menuitem">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.8 9h-3.1a15.5 15.5 0 0 0-1-5 8.1 8.1 0 0 1 4.1 5ZM12 4.1c.8 1.1 1.5 3.5 1.7 6.9h-3.4c.2-3.4.9-5.8 1.7-6.9ZM4.2 13h3.1c.1 1.9.4 3.6 1 5a8.1 8.1 0 0 1-4.1-5Zm3.1-2H4.2a8.1 8.1 0 0 1 4.1-5 15.5 15.5 0 0 0-1 5Zm4.7 8.9c-.8-1.1-1.5-3.5-1.7-6.9h3.4c-.2 3.4-.9 5.8-1.7 6.9Zm2.7-1.9c.6-1.4.9-3.1 1-5h3.1a8.1 8.1 0 0 1-4.1 5Z"/></svg>
+                <span>Homepage</span>
+                <strong>jyrao.github.io</strong>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section overview" id="overview">
+        <div class="section__head">
+          <p class="eyebrow">Overview</p>
+          <h2>Football tactics as conditional evolution.</h2>
+        </div>
+        <div class="overview__grid">
+          <div class="overview__copy">
+            <p>
+              GenTac formulates soccer tactics as a <span class="mark">stochastic evolution</span> of
+              multi-player trajectories and <span class="mark">tactical semantics</span>. From the same match context,
+              the model can generate plausible futures, recognize the semantic event a trajectory expresses,
+              and forecast what tactical outcome may emerge next.
+            </p>
+            <p>
+              By unifying <span class="mark">trajectory forecasting</span>, event anticipation, and
+              <span class="mark">counterfactual simulation</span>, GenTac establishes a generative foundation
+              for decoding complex multi-agent dynamics in sports AI.
+            </p>
+          </div>
+          <div class="contribution-list">
+            <article><span>01</span><p><strong>Geometric accuracy</strong> with preserved collective team structure.</p></article>
+            <article><span>02</span><p><strong>Style simulation</strong> across teams and leagues, including Auckland FC, A-League, and German leagues.</p></article>
+            <article><span>03</span><p><strong>Controllable counterfactuals</strong> that alter spatial control and expected threat under offensive or defensive guidance.</p></article>
+            <article><span>04</span><p><strong>Future tactical outcomes</strong> anticipated directly from generated rollouts.</p></article>
+            <article><span>05</span><p><strong>Cross-sport generalization</strong> to basketball, American football, and ice hockey through the same generative view.</p></article>
+          </div>
+        </div>
+        <figure class="teaser-panel">
+          <img src="figs/teaser.png" alt="GenTac teaser showing generative soccer tactical evolution.">
+        </figure>
+      </section>
+
+      <section class="section tasks" id="tasks">
+        <div class="section__head">
+          <p class="eyebrow">Tasks</p>
+          <h2>Two tasks, one tactical representation.</h2>
+        </div>
+        <div class="task-duo">
+          <article class="task-card task-card--trajectory">
+            <div class="task-card__head">
+              <span>Task 1</span>
+              <h3>Multi-Player Trajectory Forecasting</h3>
+              <p>
+                Forecast the future <span class="mark">2D movement</span> of all players and the ball, while keeping the generated game
+                evolution coherent at the team and interaction level.
+              </p>
+            </div>
+            <div class="task-list">
+              <p><strong>Synchronized rollout</strong> Forecast both teams jointly, preserving team shape and interaction structure.</p>
+              <p><strong>Opponent-conditioned movement</strong> Predict how players adapt their runs and spacing against a given opponent.</p>
+              <p><strong>Team and league style simulation</strong> Generate futures that reflect club-level and league-level tactical tendencies.</p>
+              <p><strong>Objective-guided tactics</strong> Steer rollouts with attacking or defensive guidance for counterfactual analysis.</p>
+            </div>
+          </article>
+
+          <article class="task-card task-card--events">
+            <div class="task-card__head">
+              <span>Task 2</span>
+              <h3>Tactical Event Grounding and Forecasting</h3>
+              <p>
+                Connect continuous motion to <span class="mark">tactical semantics</span>: what phase is unfolding now,
+                and what event is likely to emerge from generated futures?
+              </p>
+            </div>
+            <div class="semantic-modes semantic-modes--task">
+              <article>
+                <h3>Grounding</h3>
+                <p>Map observed or generated trajectories into a 15-class tactical event space.</p>
+              </article>
+              <article>
+                <h3>Forecasting</h3>
+                <p>Anticipate future tactical outcomes directly from generated match rollouts.</p>
+              </article>
+            </div>
+            <div class="event-showcase event-showcase--embedded">
+              <div class="event-preview">
+                <img id="event-preview-img" src="figs/classification/blank.png" alt="Goal tactical event thumbnail">
+                <div>
+                  <span id="event-preview-type">Threat</span>
+                  <strong id="event-preview-name">Goal</strong>
+                  <p id="event-preview-copy">The terminal attacking event, where movement, timing, and finish align.</p>
+                </div>
+              </div>
+              <div class="event-chips" aria-label="Tactical event examples">
+                <button class="event-chip is-active" data-type="Threat" data-name="Goal" data-image="figs/classification/blank.png" data-copy="The terminal attacking event, where movement, timing, and finish align.">Goal</button>
+                <button class="event-chip" data-type="Transition" data-name="Ball Win" data-image="figs/classification/ball-win.png" data-copy="Recover possession and convert pressure into a new attacking phase.">Ball Win</button>
+                <button class="event-chip" data-type="Transition" data-name="Progression" data-image="figs/classification/progression.png" data-copy="Move the ball and team shape forward through pressure.">Progression</button>
+                <button class="event-chip" data-type="Build-up" data-name="Build" data-image="figs/classification/blank.png" data-copy="Organize possession before the attack becomes explicit.">Build</button>
+                <button class="event-chip" data-type="Interruption" data-name="Stoppage" data-image="figs/classification/interruption.png" data-copy="Pause or reset the phase when play is broken.">Stoppage</button>
+                <button class="event-chip" data-type="Set Piece" data-name="Throw-in" data-image="figs/classification/throw-in.png" data-copy="Restart play from touch while reshaping nearby support.">Throw-in</button>
+                <button class="event-chip" data-type="Set Piece" data-name="Free Kick" data-image="figs/classification/free-kick.png" data-copy="Turn a dead-ball moment into a structured tactical launch.">Free Kick</button>
+                <button class="event-chip" data-type="Set Piece" data-name="Corner" data-image="figs/classification/corner.png" data-copy="Pack the box, bend the delivery, and test defensive marking.">Corner</button>
+                <button class="event-chip" data-type="Set Piece" data-name="Goal Kick" data-image="figs/classification/goal-kick.png" data-copy="Restart from deep and choose between short build-up or direct release.">Goal Kick</button>
+                <button class="event-chip" data-type="Set Piece" data-name="Kick-off" data-image="figs/classification/kick-off.png" data-copy="Reset the match state into a rehearsed opening structure.">Kick-off</button>
+                <button class="event-chip" data-type="Threat" data-name="Clearance" data-image="figs/classification/clearance.png" data-copy="Break pressure by forcing the ball away from dangerous space.">Clearance</button>
+                <button class="event-chip" data-type="Threat" data-name="Shot Off Target" data-image="figs/classification/shot-off-target.png" data-copy="A finishing action that separates spatial threat from final outcome.">Shot Off Target</button>
+                <button class="event-chip" data-type="Threat" data-name="Shot Saved" data-image="figs/classification/shot-saved.png" data-copy="A shot trajectory met by goalkeeper response and defensive recovery.">Shot Saved</button>
+                <button class="event-chip" data-type="Threat" data-name="Defended" data-image="figs/classification/defended.png" data-copy="Suppress a dangerous action through defensive pressure and control.">Defended</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section tacbench" id="tacbench">
+        <div class="section__head">
+          <p class="eyebrow">TacBench</p>
+          <h2>A benchmark for motion, semantics, and tactical control.</h2>
+        </div>
+        <div class="tacbench-layout">
+          <div class="tacbench-copy">
+            <p>
+              TacBench evaluates both sides of GenTac: <span class="mark">trajectory forecasting</span> over full
+              multi-player motion and <span class="mark mark--blue">tactical event understanding</span> over annotated semantic phases.
+              <span class="mark mark--green">TacBench-Trajectory</span> contains synchronized 15-second open-play clips
+              with every player and the ball on the pitch, supporting joint, opponent-conditioned, style-conditioned,
+              and objective-guided forecasting.
+            </p>
+            <div class="tacbench-stats">
+              <article><strong>2,838</strong><span>15-second trajectory segments</span></article>
+              <article><strong>25 FPS</strong><span>resampled synchronized tracking</span></article>
+              <article><strong>423</strong><span>event segments with tactical annotations</span></article>
+              <article><strong>15</strong><span>fine-grained event subtypes across 5 macro-categories</span></article>
+            </div>
+          </div>
+          <div class="taxonomy-card">
+            <div class="taxonomy-card__top">
+              <div>
+                <p class="figure-label">TacBench-Event</p>
+                <h3>Macro-categories and subtypes</h3>
+              </div>
+              <strong>4,284</strong>
+            </div>
+            <svg class="taxonomy-chart" id="taxonomy-chart" viewBox="0 0 680 680" role="img" aria-label="TacBench event taxonomy counts by macro category and subtype"></svg>
+            <div class="taxonomy-hover" id="taxonomy-hover" aria-live="polite">
+              <span>Hover the chart</span>
+              <strong>Macro-category and subtype counts</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section figure-gallery" id="results">
+        <div class="section__head">
+          <p class="eyebrow">Results</p>
+          <h2>From field geometry to tactical meaning.</h2>
+        </div>
+
+        <article class="figure-card figure-card--wide figure-card--resultonly">
+          <div>
+            <p class="figure-label">Figure 1</p>
+            <h3>Forecasting accuracy and collective structure.</h3>
+            <p>
+              GenTac forecasts up to <span class="mark">5 seconds</span> into the future, reporting
+              <span class="mark">ADE/FDE</span> for trajectory accuracy and collective metrics such as surface area,
+              stretch index, team length, team width, pairwise-distance structure, synchronization, and centroid displacement.
+            </p>
+          </div>
+          <img src="figs/fig1_resultonly.png" alt="Trajectory forecasting accuracy and collective structural consistency results.">
+        </article>
+
+        <article class="figure-card figure-card--wide">
+          <div>
+            <p class="figure-label">Figure 2</p>
+            <h3>Conditioning turns generation into tactical steering.</h3>
+            <p>
+              <span class="mark mark--blue">Team</span>, <span class="mark mark--blue">league</span>,
+              <span class="mark mark--red">offense</span>, and <span class="mark mark--red">defense</span>
+              conditions reshape generated trajectories while preserving coherent collective structure.
+            </p>
+          </div>
+          <img src="figs/fig2.png" alt="Team-conditioned, league-conditioned, and objective-conditioned trajectory forecasting results.">
+        </article>
+
+        <article class="figure-card figure-card--wide figure-card--figure3">
+          <div>
+            <p class="figure-label">Figure 3</p>
+            <h3>The same generative view travels beyond soccer.</h3>
+            <p>
+              GenTac is evaluated on <span class="mark">basketball</span>, <span class="mark">American football</span>,
+              and <span class="mark">ice hockey</span> tracking data, showing strong multi-agent forecasting behavior across sports.
+            </p>
+          </div>
+          <img src="figs/fig3.png" alt="Trajectory forecasting accuracy across basketball, American football, and ice hockey.">
+        </article>
+
+        <div class="figure-pair">
+          <article class="figure-card">
+            <div>
+              <p class="figure-label">Figure 4</p>
+              <h3>TacBench grounds trajectories in events.</h3>
+              <p>
+                The benchmark covers <span class="mark mark--blue">15 tactical subtypes</span> across build-up,
+                transition, interruption, set piece, and threat phases.
+              </p>
+            </div>
+            <img src="figs/fig4.png" alt="TacBench event taxonomy, event distributions, accuracy, and recall metrics.">
+          </article>
+
+          <article class="figure-card">
+            <div>
+              <p class="figure-label">Figure 5</p>
+              <h3>Generated futures become event forecasts.</h3>
+              <p>
+                Multiple rollouts produce a <span class="mark mark--blue">distribution over tactical outcomes</span>,
+                exposing not only the predicted event but the spatial route toward it.
+              </p>
+            </div>
+            <img src="figs/fig5.png" alt="Tactical event forecasting pipeline and qualitative examples from generated trajectories.">
+          </article>
+        </div>
+      </section>
+
+      <section class="section vision" id="vision">
+        <div class="vision__inner">
+          <p class="eyebrow">Vision</p>
+          <p>
+            GenTac points toward a <span class="vision-mark">tactical science</span> where massive tracking data no longer
+            stays as archived match traces, but becomes a <span class="vision-mark">living simulator</span> for football
+            intelligence: testing decisions, comparing futures, studying team identity, and building models that reason
+            about the game as coaches do, through space, timing, pressure, and intent.
+          </p>
+        </div>
+      </section>
+
+      <section class="section prevworks" id="prevworks">
+        <div class="section__head">
+          <p class="eyebrow">Prev. Works</p>
+          <h2>A growing stack for soccer intelligence.</h2>
+        </div>
+        <p class="prevworks__lead">
+          GenTac continues a line of work that moves from commentary and universal video understanding toward
+          multi-agent reasoning, soccer foundation models, and finally tactical simulation.
+        </p>
+        <div class="work-timeline" aria-label="Previous soccer AI works timeline">
+          <a class="work-item" href="https://haoningwu3639.github.io/MatchTime/" target="_blank" rel="noopener">
+            <span class="work-year">EMNLP 2024 Oral</span>
+            <h3>MatchTime</h3>
+            <p>Temporal alignment for soccer dense captioning and AI-driven soccer commentary generation.</p>
+            <img src="figs/prevworks/matchtime.jpg" alt="MatchTime project thumbnail.">
+          </a>
+          <a class="work-item" href="https://jyrao.github.io/UniSoccer/" target="_blank" rel="noopener">
+            <span class="work-year">CVPR 2025</span>
+            <h3>UniSoccer</h3>
+            <p>Large-scale soccer dataset construction and unified modeling across soccer understanding tasks.</p>
+            <img src="figs/prevworks/unisoccer.jpg" alt="UniSoccer project thumbnail.">
+          </a>
+          <a class="work-item" href="https://jyrao.github.io/SoccerAgent/" target="_blank" rel="noopener">
+            <span class="work-year">ACM MM 2025</span>
+            <h3>SoccerAgent</h3>
+            <p>A multimodal benchmark and multi-agent system for comprehensive soccer understanding.</p>
+            <img src="figs/prevworks/socceragent.jpg" alt="SoccerAgent project thumbnail.">
+          </a>
+          <a class="work-item" href="https://haolinyang-hlyang.github.io/SoccerMaster/" target="_blank" rel="noopener">
+            <span class="work-year">CVPR 2026 Oral</span>
+            <h3>SoccerMaster</h3>
+            <p>A soccer vision foundation model trained with large-scale multi-task supervised pretraining.</p>
+            <img src="figs/prevworks/soccermaster.jpg" alt="SoccerMaster project thumbnail.">
+          </a>
+        </div>
+      </section>
+
+      <section class="section citation" id="citation">
+        <div class="section__head">
+          <p class="eyebrow">Citation</p>
+          <h2>Reference</h2>
+        </div>
+        <pre><code>@article{rao2026gentac,
+  title={GenTac: Generative Modeling and Forecasting of Soccer Tactics},
+  author={Rao, Jiayuan and Gui, Tianlin and Wu, Haoning and Wang, Yanfeng and Xie, Weidi},
+  journal={arXiv preprint arXiv:2604.11786},
+  year={2026}
+}</code></pre>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>GenTac · Generative Modeling and Forecasting of Soccer Tactics</p>
+      <a href="#top">Back to top</a>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
