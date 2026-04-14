@@ -7,7 +7,7 @@ Official repository for **GenTac: Generative Modeling and Forecasting of Soccer 
 
 ![GenTac overview](figs/fig1.png)
 
-*Figure 1. GenTac models open-play soccer tactics from tracking histories and contextual conditions, generating multi-player trajectory rollouts and grounding them into tactical events.*
+**Figure 1.** GenTac models open-play soccer tactics from tracking histories and contextual conditions, generating multi-player trajectory rollouts and grounding them into tactical events.
 
 ## TL;DR
 
@@ -28,10 +28,28 @@ This makes GenTac useful for both understanding and prediction. The same framewo
 - **Team and league style simulation:** generate futures that reflect club-level and league-level tactical tendencies.
 - **Objective-guided tactics:** steer rollouts with attacking or defensive guidance for counterfactual analysis.
 
+![Trajectory forecasting](figs/fig2.png)
+
+**Figure 2.** Multi-player trajectory forecasting under different conditions, including opponent-, team-, league-, and objective-guided tactical rollouts.
+
 ### 2. Tactical Event Recognition and Forecasting
 
 - **Grounding:** map generated trajectories into a 15-class tactical event space.
 - **Forecasting:** anticipate future tactical outcomes directly from generated match rollouts.
+
+![Tactical event grounding](figs/fig4.png)
+
+**Figure 4.** Tactical event recognition grounds continuous player trajectories into interpretable soccer events.
+
+## More Results
+
+![Team sports generalization](figs/fig3.png)
+
+**Figure 3.** GenTac can also be applied to other dynamic team sports, showing its ability to model multi-agent tactical motion beyond soccer.
+
+![Event forecasting](figs/fig5.png)
+
+**Figure 5.** Tactical event forecasting examples and results from generated rollouts.
 
 ## Release Progress
 
