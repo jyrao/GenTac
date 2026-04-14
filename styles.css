@@ -230,8 +230,9 @@ h1 {
 
 .contact__panel {
   position: absolute;
-  top: calc(100% + 12px);
-  right: 0;
+  right: auto;
+  bottom: calc(100% + 12px);
+  left: 100%;
   z-index: 5;
   width: 285px;
   padding: 8px;
@@ -240,8 +241,8 @@ h1 {
   background: rgba(16, 20, 16, 0.9);
   box-shadow: 0 18px 60px rgba(0, 0, 0, 0.32);
   opacity: 0;
-  transform: translateY(-8px) scale(0.98);
-  transform-origin: top right;
+  transform: translate(-10px, 10px) scale(0.98);
+  transform-origin: bottom left;
   pointer-events: none;
   backdrop-filter: blur(18px);
   transition: opacity 180ms ease, transform 180ms ease;
@@ -249,7 +250,7 @@ h1 {
 
 .contact.is-open .contact__panel {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translate(10px, 0) scale(1);
   pointer-events: auto;
 }
 
@@ -1777,7 +1778,14 @@ code {
   .contact__panel {
     left: 0;
     right: 0;
+    bottom: calc(100% + 12px);
     width: auto;
+    transform: translateY(10px) scale(0.98);
+    transform-origin: bottom center;
+  }
+
+  .contact.is-open .contact__panel {
+    transform: translateY(0) scale(1);
   }
 
   .contact .button {
