@@ -3,7 +3,8 @@
 Official repository for **GenTac: Generative Modeling and Forecasting of Soccer Tactics**.
 
 **Authors:** Jiayuan Rao, Tianlin Gui, Haoning Wu, Yanfeng Wang, Weidi Xie  
-**Paper:** [arXiv](https://arxiv.org/abs/2604.11786) | [PDF](https://arxiv.org/pdf/2604.11786) | [Project Page](#)
+
+**Links:** 📄 [arXiv](https://arxiv.org/abs/2604.11786) | 📑 [PDF](https://arxiv.org/pdf/2604.11786) | 🌐 [Project Page](https://jyrao.github.io/GenTac/) | 🎬 [Demo Video (soon)](#)
 
 ![GenTac overview](figs/fig1.png)
 
@@ -39,13 +40,13 @@ This makes GenTac useful for both understanding and prediction. The same framewo
 
 ![Tactical event grounding](figs/fig4.png)
 
-**Figure 4.** Tactical event recognition grounds continuous player trajectories into interpretable soccer events.
+**Figure 3.** Tactical event recognition grounds continuous player trajectories into interpretable soccer events.
 
 ## More Results
 
 ![Team sports generalization](figs/fig3.png)
 
-**Figure 3.** GenTac can also be applied to other dynamic team sports, showing its ability to model multi-agent tactical motion beyond soccer.
+**Figure 4.** GenTac can also be applied to other dynamic team sports, showing its ability to model multi-agent tactical motion beyond soccer.
 
 ![Event forecasting](figs/fig5.png)
 
@@ -57,7 +58,7 @@ This makes GenTac useful for both understanding and prediction. The same framewo
 | --- | --- |
 | Paper | Released |
 | Figures | Released |
-| Project page | Coming soon |
+| Project page | Released |
 | Code | Coming soon |
 | Data / TacBench | Coming soon |
 | Pretrained models | Coming soon |
