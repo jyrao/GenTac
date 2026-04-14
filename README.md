@@ -7,23 +7,31 @@ Official repository for **GenTac: Generative Modeling and Forecasting of Soccer 
 
 ![GenTac overview](figs/fig1.png)
 
+*Figure 1. GenTac models open-play soccer tactics from tracking histories and contextual conditions, generating multi-player trajectory rollouts and grounding them into tactical events.*
+
 ## TL;DR
 
-**GenTac turns soccer tracking data into playable tactical futures.** Instead of predicting one deterministic continuation, it samples many plausible team-level rollouts, keeps the collective shape of the game intact, and links continuous player movement with interpretable tactical events.
+**GenTac turns soccer tracking data into tactical futures.** It treats open-play soccer as a conditional generative process: given match context, it learns the distribution of how the game may evolve, then samples plausible player movements and tactical events for understanding, simulation, and prediction.
 
 ## Overview
 
-Open-play soccer is messy: ten outfield players react to teammates, opponents, space, style, and match objectives at the same time. GenTac models this uncertainty directly. Starting from a short history of player trajectories, it generates long-horizon tactical continuations that can be conditioned on the opponent, team identity, league style, or high-level attacking/defensive intent.
+Open-play tactics are not a single scripted answer. Players react to teammates, opponents, space, team style, league tendencies, and strategic objectives at the same time. GenTac frames this as learning conditional probability distributions over match evolution: from a short tracking history and optional tactical conditions, the model generates likely futures rather than committing to one deterministic forecast.
 
-Beyond where players may move next, GenTac also asks what the play is becoming: generated rollouts are grounded into a 15-class tactical event space, enabling tactical event forecasting and counterfactual analysis from the same generative model.
+This makes GenTac useful for both understanding and prediction. The same framework can extend a possession into multiple realistic continuations, compare how different teams or leagues may play from similar states, and connect continuous movement patterns to discrete tactical outcomes.
 
-## Highlights
+## Tasks
 
-- 🎲 **Many futures, not one guess:** sample diverse long-horizon continuations for open-play soccer.
-- 🧩 **Team structure matters:** forecast all players jointly while preserving collective tactical shape.
-- 🎛️ **Controllable simulation:** condition generations on opponents, teams, leagues, and tactical objectives.
-- 📍 **Movement meets meaning:** connect continuous trajectories with a 15-class tactical event space.
-- 🏟️ **TacBench evaluation:** benchmark geometry, structure, style, counterfactual control, and outcome prediction.
+### 1. Multi-player Trajectory Forecasting
+
+- **Synchronized rollout:** forecast both teams jointly, preserving team shape and interaction structure.
+- **Opponent-conditioned movement:** predict how players adapt their runs and spacing against a given opponent.
+- **Team and league style simulation:** generate futures that reflect club-level and league-level tactical tendencies.
+- **Objective-guided tactics:** steer rollouts with attacking or defensive guidance for counterfactual analysis.
+
+### 2. Tactical Event Recognition and Forecasting
+
+- **Grounding:** map generated trajectories into a 15-class tactical event space.
+- **Forecasting:** anticipate future tactical outcomes directly from generated match rollouts.
 
 ## Release Progress
 
